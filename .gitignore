@@ -273,3 +273,5 @@ UpgradeLog*.XML
 x64/
 x86/
 ~$*
+.nyc_output
+logs

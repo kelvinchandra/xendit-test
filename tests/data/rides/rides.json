@@ -1,0 +1,57 @@
+[
+
+    {
+        "start_lat":190,
+        "start_long":170,
+        "end_lat":60,
+        "end_long":70,
+        "rider_name":"riderTesting",
+        "driver_name":"driverTesting",
+        "driver_vehicle":"driverVehicleTesting"
+    },
+    {
+        "start_lat":60,
+        "start_long":170,
+        "end_lat":60,
+        "end_long":70,
+        "rider_name":"riderTesting",
+        "driver_name":"driverTesting",
+        "driver_vehicle":"driverVehicleTesting"
+    },
+    {
+        "start_lat":60,
+        "start_long":170,
+        "end_lat":60,
+        "end_long":70,
+        "rider_name": null,
+        "driver_name":"driverTesting",
+        "driver_vehicle":"driverVehicleTesting"
+    },
+    {
+        "start_lat":60,
+        "start_long":170,
+        "end_lat":60,
+        "end_long":70,
+        "rider_name":"riderTesting",
+        "driver_name":null,
+        "driver_vehicle":"driverVehicleTesting"
+    },
+    {
+        "start_lat":60,
+        "start_long":170,
+        "end_lat":60,
+        "end_long":70,
+        "rider_name":"riderTesting",
+        "driver_name":"driverTesting",
+        "driver_vehicle":null
+    },
+    {
+        "start_lat":60,
+        "start_long":-200,
+        "end_lat":60,
+        "end_long":70,
+        "rider_name":"riderTesting",
+        "driver_name":"driverTesting",
+        "driver_vehicle":null
+    }
+]
