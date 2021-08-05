@@ -7,6 +7,8 @@ const db = new sqlite3.Database(':memory:');
 
 const app = require('../src/app')(db);
 const buildSchemas = require('../src/schemas');
+const requestInsertRides = require('./data/rides/rides.json');
+
 
 describe('API tests', () => {
     before((done) => {
@@ -29,4 +31,47 @@ describe('API tests', () => {
                 .expect(200, done);
         });
     });
+
+    requestInsertRides.forEach(element =>{
+        describe('Insert /rides',() => {
+            it('should return rows', (done) => {
+                request(app)
+                    .post('/rides')
+                    .send(element)
+                    .end((err, res) =>{
+                        if(err) done(err);
+                        console.log('rides response' + JSON.stringify(res));
+                        done();
+                    });
+            });
+        });
+    });
+  
+
+    describe('GET /rides', () => {
+        it('should return arry of rides', (done) => {
+            request(app)
+                .get('/rides')
+                .expect('Content-Type', /json/)
+                .end((err, res) =>{
+                    if(err) done(err);
+                    console.log('rides response' + JSON.stringify(res));
+                    done();
+                });
+        });
+    });
+
+    describe('GET /rides/:id', () => {
+        it('should return specific rides', (done) => {
+            request(app)
+                .get('/rides/1')
+                .expect('Content-Type', /json/)
+                .end((err, res) =>{
+                    if(err) done(err);
+                    console.log('rides response' + JSON.stringify(res));
+                    done();
+                });
+        });
+    });
+    
 });

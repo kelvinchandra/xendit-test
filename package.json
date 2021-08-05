@@ -7,11 +7,16 @@
     "test": "tests"
   },
   "scripts": {
-    "pretest": "eslint --ignore-path .gitignore .",
-    "test": "mocha tests",
+    "coverage": "nyc report --reporter=json",
+    "pretest": "nyc eslint --ignore-path .gitignore .",
+    "test": "nyc mocha tests",
     "lint": "eslint --ignore-path .gitignore .",
-    "start": "node index.js"
+    "start": "node index.js",
+    "prepush": "npm run test"
   },
+  "pre-push": [
+    "test"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/kelvinchandra/xendit-test.git"
@@ -24,14 +29,20 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.16.4",
-    "sqlite3": "^4.0.6"
+    "sqlite3": "^4.2.0",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
     "mocha": "^6.1.4",
     "nyc": "^15.1.0",
+    "pre-push": "^0.1.1",
     "prettier": "^1.13.0",
     "supertest": "^4.0.2"
+  },
+  "_moduleAliases": {
+    "@root": ".",
+    "@src": "/src"
   },
   "engines": {
     "node": ">8.6 <=10"
