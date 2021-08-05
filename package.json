@@ -7,8 +7,14 @@
     "test": "tests"
   },
   "scripts": {
+    "pretest": "eslint --ignore-path .gitignore .",
     "test": "mocha tests",
+    "lint": "eslint --ignore-path .gitignore .",
     "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kelvinchandra/xendit-test.git"
   },
   "keywords": [
     "Xendit"
@@ -21,10 +27,13 @@
     "sqlite3": "^4.0.6"
   },
   "devDependencies": {
+    "eslint": "^5.16.0",
     "mocha": "^6.1.4",
+    "nyc": "^15.1.0",
+    "prettier": "^1.13.0",
     "supertest": "^4.0.2"
   },
   "engines": {
-    "node": ">8.6 <= 10"
+    "node": ">8.6 <=10"
   }
 }
