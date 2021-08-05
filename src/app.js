@@ -1,13 +1,18 @@
 'use strict';
 
 const express = require('express');
+const { logger } = require('./utils/logger.utils');
 const app = express();
 
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
-
+const pagination = function () {
+    return (req , res , next) =>{       
+      
+    };
+};
 module.exports = (db) => {
-    app.get('/health', (req, res) => res.send('Healthy'));
+    app.get('/health',  (req, res) => res.send('Healthy'));
 
     app.post('/rides', jsonParser, (req, res) => {
         const startLatitude = Number(req.body.start_lat);
@@ -77,7 +82,12 @@ module.exports = (db) => {
     });
 
     app.get('/rides', (req, res) => {
-        db.all('SELECT * FROM Rides', function (err, rows) {
+        const page = parseInt(req.query.page);
+        logger.info(`page -- ${page}`);
+        const limit = parseInt(req.query.limit);
+        logger.info(`limit -- ${limit}`);
+        const offset = page * limit;
+        db.all(`SELECT * FROM Rides LIMIT ${limit}${offset}`, function (err, rows) {
             if (err) {
                 return res.send({
                     error_code: 'SERVER_ERROR',
@@ -91,8 +101,14 @@ module.exports = (db) => {
                     message: 'Could not find any rides'
                 });
             }
-
-            res.send(rows);
+            const response = {
+                ...rows,
+                'pagination':{
+                    limit,
+                    page
+                }
+            };
+            res.send(response);
         });
     });
 

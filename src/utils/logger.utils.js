@@ -4,7 +4,7 @@ let newFilename = mydate.getFullYear() + '-' + mydate.getMonth() + '-' + mydate.
 const logConfiguration = {
     'transports': [
         new winston.transports.File({
-            filename: `logs/${newFilename}.log`
+            filename: `logs/${newFilename}`
         })
     ]
 };

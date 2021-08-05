@@ -51,7 +51,7 @@ describe('API tests', () => {
     describe('GET /rides', () => {
         it('should return arry of rides', (done) => {
             request(app)
-                .get('/rides')
+                .get('/rides?page=1&limit=3')
                 .expect('Content-Type', /json/)
                 .end((err, res) =>{
                     if(err) done(err);
