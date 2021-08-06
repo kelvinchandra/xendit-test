@@ -5,7 +5,7 @@ const request = require('supertest');
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database(':memory:');
 
-const app = require('../src/app')(db);
+const app = require('../server/app')(db);
 const buildSchemas = require('../src/schemas');
 const requestInsertRides = require('./data/rides/rides.json');
 
@@ -46,8 +46,6 @@ describe('API tests', () => {
             });
         });
     });
-  
-
     describe('GET /rides', () => {
         it('should return arry of rides', (done) => {
             request(app)
@@ -60,14 +58,12 @@ describe('API tests', () => {
                 });
         });
     });
-
     describe('GET /rides/:id', () => {
         it('should return specific rides', (done) => {
             request(app)
                 .get('/rides/1')
                 .expect('Content-Type', /json/)
                 .end((err, res) =>{
-                    if(err) done(err);
                     console.log('rides response' + JSON.stringify(res));
                     done();
                 });

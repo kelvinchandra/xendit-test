@@ -1,3 +1,4 @@
+
 'use strict';
 
 const express = require('express');
@@ -16,7 +17,7 @@ const buildSchemas = require('./src/schemas');
 db.serialize(() => {
     buildSchemas(db);
 
-    const app = require('./src/app')(db);
+    const app = require('./server/app')(db);
 
     app.listen(port, () => logger.info(`App started and listening on port ${port}`));
 });
